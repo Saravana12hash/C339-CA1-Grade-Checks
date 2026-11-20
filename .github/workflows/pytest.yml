@@ -3,7 +3,24 @@ name: Grade Checks Pytest
 
 on:
   push:
+    paths:
+      - 'grade_average.py'
+      - 'grade_pass.py'
+      - 'test_grade_average.py'
+      - 'test_grade_pass.py'
+      - '.github/workflows/pytest.yml'
+
   pull_request:
+    paths:
+      - 'grade_average.py'
+      - 'grade_pass.py'
+      - 'test_grade_average.py'
+      - 'test_grade_pass.py'
+      - '.github/workflows/pytest.yml'
+
+concurrency:
+  group: grade-checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
